@@ -32,7 +32,7 @@ let getToken = async (code, clientBaseRoute) => {
       },
     })
     .catch((error) => {
-      console.log(error.response);
+      console.log(error.response.data);
     });
 
   const response = await req;
@@ -79,3 +79,4 @@ let getEncodedSpotifyAppCredentials = () => {
   return btoa(authorizationHeader);
 };
 
+export { getAuthenticationUrl, getToken, refreshToken };
