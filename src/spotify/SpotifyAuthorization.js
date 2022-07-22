@@ -6,7 +6,7 @@ const BASE_URL = "https://accounts.spotify.com";
 const SCOPE = "user-read-private user-read-email user-top-read";
 const REDIRECT = "/callback";
 
-let getAuthenticationUrl = (clientBaseRoute) => {
+const getAuthenticationUrl = (clientBaseRoute) => {
   const authenticationUrl = new URL(`${BASE_URL}/authorize`);
   authenticationUrl.searchParams.append("client_id", process.env.CLIENT_ID);
   authenticationUrl.searchParams.append("response_type", "code");
@@ -18,7 +18,7 @@ let getAuthenticationUrl = (clientBaseRoute) => {
   return authenticationUrl.toString();
 };
 
-let getToken = async (code, clientBaseRoute) => {
+const getToken = async (code, clientBaseRoute) => {
   const req = axios
     .post(`${BASE_URL}/api/token`, null, {
       headers: {
@@ -42,7 +42,7 @@ let getToken = async (code, clientBaseRoute) => {
   return token;
 };
 
-let refreshToken = async (refreshToken) => {
+const refreshToken = async (refreshToken) => {
   let req = axios
     .post(`${BASE_URL}/api/token`, null, {
       headers: {
@@ -66,7 +66,7 @@ let refreshToken = async (refreshToken) => {
   return token;
 };
 
-let reformToken = (token) => {
+const reformToken = (token) => {
   delete token.scope;
   delete token.expires_in;
   delete token.token_type;
@@ -74,7 +74,7 @@ let reformToken = (token) => {
   return token;
 };
 
-let getEncodedSpotifyAppCredentials = () => {
+const getEncodedSpotifyAppCredentials = () => {
   const authorizationHeader = `${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`;
   return btoa(authorizationHeader);
 };
