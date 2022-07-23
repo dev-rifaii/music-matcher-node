@@ -86,7 +86,7 @@ const getTrackDetailsByTrackId = async (id) => {
   const res = await client.query("SELECT * FROM track_details WHERE id=$1", [
     id,
   ]);
-  return res.rows;
+  return res.rows[0];
 };
 
 const updateUserBiography = (id, text) => {

@@ -10,8 +10,14 @@ const peristUser = async (spotifyToken) => {
     userTracksIds,
     spotifyToken
   );
-
   dao.insertUser(userProfile, userTracksIds, userArtistIds);
   dao.insertTrackDetails(userTracksDetails);
+};
 
+const getIdBySpotifyToken = async (spotifyToken) => {
+  return (await spotifyApi.getUserSpotifyProfile(token)).id;
+};
+
+const getTracksDetails = async (spotifyToken, tracks) => {
+  return spotifyApi.getTracksDetails(spotifyToken, tracks);
 };

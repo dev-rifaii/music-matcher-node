@@ -35,7 +35,7 @@ const getTopArtistsId = async (token) => {
   return artists;
 };
 
-const getTracksDetails = async (tracksIds, token) => {
+const getTracksDetails = async (token, tracksIds) => {
   const joined = tracksIds.join(",");
   const response = await fetchFromApi(
     `${BASE_URL}/tracks/?ids=${joined}`,

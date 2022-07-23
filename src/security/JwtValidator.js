@@ -34,6 +34,4 @@ const getKeyStore = async () => {
   return keyStore;
 };
 
-console.log(await getUserId(jwt));
-
 export { verifyToken, getUserId };

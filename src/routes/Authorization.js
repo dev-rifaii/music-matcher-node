@@ -9,7 +9,6 @@ router.get("/url", (req, res) => {
 
 router.get("/token", async (req, res) => {
   const token = await auth.getToken(req.headers.code, req.headers.baseroute);
-  console.log(token);
   res.send(token);
 });
 
