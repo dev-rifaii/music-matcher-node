@@ -23,9 +23,8 @@ router.get("/matches", async (req, res) => {
 });
 
 router.post("/bio", async (req, res) => {
-  console.log(req.body);
   userService.setBiography(req.headers.jwt, req.body);
-  res.send("Success");
+  res.send();
 });
 
 export default router;

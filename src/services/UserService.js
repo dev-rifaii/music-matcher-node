@@ -41,7 +41,7 @@ const setBiography = async (jwt, text) => {
 
 const getMatches = async (jwt) => {
   if ((await jwtValidator.verifyToken(jwt)) == true) {
-    return dao.getMatchesByUserId(await jwtValidator.getUserId(jwt));
+    return await dao.getMatchesByUserId(await jwtValidator.getUserId(jwt));
   }
 };
 const getTracksDetails = async (jwt) => {
@@ -55,7 +55,14 @@ const getTracksDetails = async (jwt) => {
       })
     );
 
-    return detailedTracks;
+    const modifiedArray = detailedTracks.map(
+      ({ image_url: imageUrl, ...rest }) => ({
+        imageUrl,
+        ...rest,
+      })
+    );
+
+    return modifiedArray;
   }
 };
 const filterMatches = async (user, previousMatches, newMatches) => {
